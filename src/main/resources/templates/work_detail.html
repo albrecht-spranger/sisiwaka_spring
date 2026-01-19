@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'シシワカ陶苑｜' + ${work.description_title}">TITLE</title>
+
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/detail.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kaisei+Tokumin&family=M+PLUS+2:wght@100..900&family=Zen+Antique&display=swap"
+		rel="stylesheet">
+
+	<!-- Swiper -->
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+
+<body>
+	<!-- =================================
+		ヘッダ
+	================================= -->
+	<header>
+		<a th:href="@{/}" class="header_left_block">
+			<img class="sisiwaka_touen_icon" th:src="@{/images/sisiwaka_touen_logo.jpg}">
+			<h1>シシワカ陶苑</h1>
+		</a>
+		<div class="header_right_block">
+			<div class="minne_icon">
+				<a href="https://minne.com/@sisiwaka10en" target="_blank">
+					<img src="/images/minne_logo_vertical.png" alt="minne logo">
+				</a>
+			</div>
+			<div class="instagram_icon">
+				<a href="https://www.instagram.com/albrecht1999/" target="_blank">
+					<img src="/images/Instagram_Glyph_Gradient.png" alt="Instagram Icon">
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main>
+
+		<p class="back_to_works">
+			<a class="link_style" th:href="@{/works}">一覧に戻る</a>
+		</p>
+
+		<section>
+			<div class="works_name_container">
+				<h1 id="works_name" th:text="${work.description_title}">タイトル</h1>
+			</div>
+
+			<!-- Swiperによるカルーセル(スライダー) -->
+			<div class="gallerySwiperContainer">
+				<div class="swiper">
+					<div class="swiper-wrapper" id="swiper_slide_holder">
+						<div class="swiper-slide" th:each="m : ${mediaList}">
+							<!-- 画像の場合 -->
+							<img loading="lazy" th:src="${m.image_url}" th:alt="${m.alt_ja}"
+								th:if="${m.video_url == null}" />
+							<!-- 動画の場合 -->
+							<img loading="lazy" th:src="${m.image_url}" th:alt="${m.alt_ja}" data-type="video"
+								th:attr="data-video_src=${m.video_url}" th:if="${m.video_url != null}" />
+						</div>
+					</div>
+				</div>
+				<!-- ページネーション -->
+				<div class="swiper-pagination"></div>
+				<!-- 前後の矢印 -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+
+			<!-- 作品情報 -->
+			<dl class="works_spec_container">
+
+				<dt>銘</dt>
+				<dd th:text="${work.name}">(未登録)</dd>
+
+				<dt>用途</dt>
+				<dd th:text="${work.category_label}">(未登録)</dd>
+
+				<dt>説明</dt>
+				<dd class="pre_line" th:text="${work.description}">(未登録)</dd>
+
+				<dt>サイズ</dt>
+				<dd class="pre_line" th:text="${work.spec}">(未登録)</dd>
+
+				<dt>技法</dt>
+				<dd
+					th:text="${techniques == null || #lists.isEmpty(techniques) ? '―' : #strings.listJoin(techniques, ', ')}">
+					(未登録)</dd>
+
+				<dt>色合い</dt>
+				<dd th:text="${work.coloring_label}">(未登録)</dd>
+
+				<dt>粘土</dt>
+				<dd class="pre_line" th:text="${work.clay}">(未登録)</dd>
+
+				<dt>釉薬</dt>
+				<dd class="pre_line" th:text="${work.glaze}">(未登録)</dd>
+
+				<dt>補足</dt>
+				<dd class="pre_line" th:text="${work.notes}">(未登録)</dd>
+
+				<dt>完成日</dt>
+				<dd th:text="${work.completion_date} ?: '―'">(未登録)</dd>
+
+				<dt>Instagram</dt>
+				<dd id="spec_instagram_url" class="instagram_icon">
+					<span th:if="${work.instagram_url == null}">
+						―
+					</span>
+					<a th:if="${work.instagram_url != null}" th:href="${work.instagram_url}" target="_blank"
+						rel="noopener noreferrer">
+						<img th:src="@{/images/Instagram_Glyph_Gradient.png}" loading="lazy" alt="Instagramへ">
+					</a>
+				</dd>
+
+				<dt>ご購入</dt>
+				<dd id="spec_online_shop" class="minne_icon">
+					<span th:if="${!work.in_stock || work.shop_url == null}">
+						(sold out)
+					</span>
+					<a th:if="${work.in_stock && work.shop_url != null}" th:href="${work.shop_url}" target="_blank"
+						rel="noopener noreferrer">
+						<img th:src="@{/images/minne_logo_vertical.png}" loading="lazy" alt="オンラインショップへ">
+					</a>
+				</dd>
+
+				<dt></dt>
+				<dd class="spec_update_date_style">
+					(記事更新<span id="spec_update_date"
+						th:text="${work.update_date != null ? #temporals.format(work.update_date, 'yyyy/M/d') : '―'}">―</span>)
+				</dd>
+
+			</dl>
+
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 シシワカ陶苑</p>
+	</footer>
+
+	<!-- lightbox -->
+	<!-- <div id="lightbox" aria-hidden="true"> -->
+	<div id="lightbox">
+		<div id="lightboxInner">
+			<img id="lightboxImage" class="lightbox-media" src="/images/noimage.svg" alt="拡大画像">
+			<video id="lightboxVideo" class="lightbox-media" preload="metadata" playsinline controls></video>
+		</div>
+	</div>
+
+	<!-- script -->492
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="/scripts/detail.js"></script>
+</body>
+
+</html>
