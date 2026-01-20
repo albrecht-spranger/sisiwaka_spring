@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>シシワカ陶苑｜管理者メニュー</title>
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/admin.css}">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Hina+Mincho&family=Kaisei+Tokumin&family=M+PLUS+2:wght@100..900&family=Zen+Antique&display=swap"
+		rel="stylesheet">
+
+</head>
+
+<body>
+	<header>
+		<a href="https://ss953871.stars.ne.jp/sisiwaka_touen/index.php" class="header_left_block">
+			<!-- <a href="index.php" class="header_left_block"> -->
+			<img class="sisiwaka_touen_icon" src="/images/sisiwaka_touen_logo.jpg" alt="シシワカ陶苑ロゴ">
+			<h1>
+				シシワカ陶苑
+			</h1>
+		</a>
+		<div class="header_right_block">
+			<div class="minne_icon">
+				<a href="https://minne.com/@sisiwaka10en" target="_blank">
+					<img src="/images/minne_logo_vertical.png" alt="minne logo">
+				</a>
+			</div>
+			<div class="instagram_icon">
+				<a href="https://www.instagram.com/albrecht1999/" target="_blank">
+					<img class="instagram_icon" src="/images/Instagram_Glyph_Gradient.png" alt="Instagram Icon">
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main>
+        <a th:href="@{/admin/edit_update}" class="admin_menu_button">更新情報編集</a>
+        <a th:href="@{/works}" class="admin_menu_button">作品編集</a>
+        <a th:href="@{/admin/media_import}" class="admin_menu_button">メディアインポート</a>
+	</main>
+
+	<footer>
+		<p>© 2026 シシワカ陶苑</p>
+	</footer>
+
+</body>
+
+</html>

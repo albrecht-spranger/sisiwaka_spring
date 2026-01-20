@@ -1,6 +1,5 @@
-package jp.albrecht1999.sisiwaka_spring.controller;
+package jp.albrecht1999.sisiwaka_spring.web;
 
-import jp.albrecht1999.sisiwaka_spring.service.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

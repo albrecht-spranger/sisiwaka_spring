@@ -1,4 +1,4 @@
-package jp.albrecht1999.sisiwaka_spring.service;
+package jp.albrecht1999.sisiwaka_spring.web;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

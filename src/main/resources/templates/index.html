@@ -5,8 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<title>シシワカ陶苑</title>
-	<link rel="stylesheet" href="/css/reset.css">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,8 +46,8 @@
 				<h2 class="nav_font">更新情報</h2>
 				<div class="section_contents" id="updates">
 					<article class="update_item" th:each="u : ${updatesList}">
-						<time class="update_date" th:text="${u['created_at']}">DATE</time>
-						<p class="update_article" th:text="${u['article']}">TEXT</p>
+						<time class="update_date" th:text="${u.createdAt}">DATE</time>
+						<p class="update_article" th:text="${u.article}">TEXT</p>
 					</article>
 				</div>
 			</section>
@@ -99,7 +99,7 @@
 	</main>
 
 	<footer>
-		<p>© 2025 シシワカ陶苑</p>
+		<p>© 2026 シシワカ陶苑</p>
 	</footer>
 
 	<!-- JavaScript -->
