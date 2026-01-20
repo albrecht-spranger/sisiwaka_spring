@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.admin_menu_button {
+    display: block;
+    width: 200px;
+    height: 80px;
+}
+
+/* =============================
+	スマホ向け
+============================= */
+@media screen and (max-width: 768px) {
+
+}
