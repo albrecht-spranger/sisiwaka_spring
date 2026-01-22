@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>シシワカ陶苑｜新着情報編集</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/edit_updates.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kaisei+Tokumin&family=M+PLUS+2:wght@100..900&family=Zen+Antique&display=swap"
+		rel="stylesheet">
+</head>
+
+<body>
+	<header>
+		<a href="../index.php" class="header_left_block">
+			<img class="sisiwaka_touen_icon" src="../images/sisiwaka_touen_logo.jpg" alt="シシワカ陶苑ロゴ">
+			<h1>
+				シシワカ陶苑
+			</h1>
+		</a>
+		<div class="header_right_block">
+			<div class="minne_icon">
+				<a href="https://minne.com/@sisiwaka10en" target="_blank">
+					<img src="../images/minne_logo_vertical.png" alt="minne logo">
+				</a>
+			</div>
+			<div class="instagram_icon">
+				<a href="https://www.instagram.com/albrecht1999/" target="_blank">
+					<img src="../images/Instagram_Glyph_Gradient.png" alt="Instagram Icon">
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<!-- flashメッセージ表示 -->
+		<!-- TBA -->
+
+		<!-- タイトル -->
+		<div class="title_container">
+			<h1 class="title">新着情報編集</h1>
+		</div>
+
+		<form id="edit_updates_form" action="edit_process.php" method="post">
+			<div class="edit_updates_table">
+				<div class="euf_row euf_header">
+					<div class="euf_cell euf_id">ID</div>
+					<div class="euf_cell euf_date">日付</div>
+					<div class="euf_cell euf_article">記事</div>
+					<div class="euf_cell euf_active">有効</div>
+					<div class="euf_cell euf_delete">削除</div>
+				</div>
+
+				<div class="euf_row">
+					<div class="euf_cell euf_id">追加</div>
+					<div class="euf_cell euf_date">
+						<input type="date" id="update_date" name="update_date" value="2026-11-22">
+					</div>
+					<div class="euf_cell euf_article">
+						<textarea name="description" id="new_article_description"></textarea>
+					</div>
+					<div class="euf_cell euf_valid"><input type="checkbox" name="new_valid" value="1" checked></div>
+					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="1"></div>
+				</div>
+
+				<div class="euf_row">
+					<div class="euf_cell euf_id">1</div>
+					<div class="euf_cell euf_date">
+						<input type="date" id="update_date" name="update_date" value="2026-11-22">
+					</div>
+					<div class="euf_cell euf_article">
+						<textarea name="description" id="new_article_description">新規
+							記事記事記事記事
+							記事記事記事
+							記事記事記事
+						</textarea>
+					</div>
+					<div class="euf_cell euf_valid"><input type="checkbox" name="new_valid" value="1" checked></div>
+					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="0"></div>
+				</div>
+
+				<div class="euf_row">
+					<div class="euf_cell euf_id">2</div>
+					<div class="euf_cell euf_date">
+						<input type="date" id="update_date" name="update_date" value="2026-11-22">
+					</div>
+					<div class="euf_cell euf_article">
+						<textarea name="description" id="new_article_description">新規
+							記事記事記事記事
+							記事記事記事
+							記事記事記事
+						</textarea>
+					</div>
+					<div class="euf_cell euf_valid"><input type="checkbox" name="new_valid" value="1" checked></div>
+					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="0"></div>
+				</div>
+			</div>
+			<!-- ボタン -->
+			<div class="forms_buttons">
+				<button type="button" id="cancel_btn"><span>メニューに戻る</span></button>
+				<button type="submit" id="submit_btn"><span>登録する</span></button>
+			</div>
+		</form>
+	</main>
+
+	<footer>
+		<p>&copy; 2026 シシワカ陶苑</p>
+	</footer>
+</body>
+
+</html>
