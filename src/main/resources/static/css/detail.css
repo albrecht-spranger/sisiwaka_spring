@@ -103,7 +103,7 @@
 /* 非アクティブ時：淡い陰陽マーク */
 .gallerySwiperContainer .swiper-pagination-bullet {
 	background-color: transparent;
-	background-image: url('../images/pagenation.png');
+	background-image: url('../images/pagenation.gif');
 	background-size: contain;
 	background-repeat: no-repeat;
 	border-radius: unset;
@@ -117,7 +117,7 @@
 
 /* アクティブ時：くっきり陰陽マーク */
 .gallerySwiperContainer .swiper-pagination-bullet-active {
-	background-image: url('../images/pagenation.png');
+	background-image: url('../images/pagenation.gif');
 	opacity: 1;
 }
 
