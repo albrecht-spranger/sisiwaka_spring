@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import jp.albrecht1999.sisiwaka_spring.entity.UpdateEntity;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -22,11 +23,11 @@ public class UpdatesRepository {
 		String sql = """
 				SELECT id, created_at, article, valid
 				  FROM updates
-				 ORDER BY created_at DESC
+				 ORDER BY created_at DESC, id DESC
 				""";
 		return jdbcTemplate.query(sql, (rs, rowNum) -> new UpdateEntity(
 				rs.getLong("id"),
-				rs.getObject("created_at", OffsetDateTime.class),
+				rs.getObject("created_at", LocalDate.class),
 				rs.getString("article"),
 				rs.getBoolean("valid")));
 	}
@@ -43,17 +44,17 @@ public class UpdatesRepository {
 	}
 
 	// 有効な更新情報(最新5件)を取得
-	public List<UpdateEntity> findValidUpdates() {
+	public List<UpdateEntity> findValidTop5() {
 		String sql = """
 				SELECT created_at, article
 				  FROM public.updates
 				 WHERE valid = true
-				 ORDER BY created_at DESC
+				 ORDER BY created_at DESC, id DESC
 				 LIMIT 5
 				""";
 		return jdbcTemplate.query(sql, (rs, rowNum) -> new UpdateEntity(
 				null,
-				rs.getObject("created_at", OffsetDateTime.class),
+				rs.getObject("created_at", LocalDate.class),
 				rs.getString("article"),
 				true));
 	}

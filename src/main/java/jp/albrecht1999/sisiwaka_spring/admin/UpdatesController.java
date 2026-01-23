@@ -20,17 +20,17 @@ public class UpdatesController {
                        @ModelAttribute("statusMessage") String statusMessage,
                        @ModelAttribute("statusOk") Boolean statusOk) {
 
-        var items = service.listAll();
+        var items = service.listForAdmin();
         model.addAttribute("items", items);
 
         // 既存行も編集できるようにフォーム行を同数作る
         UpdatesForm form = new UpdatesForm();
         for (var it : items) {
-            UpdateRowDto r = new UpdateRowDto();
+            AdminUpdateFormDto formItem = new AdminUpdateFormDto();
             // createdAt は template 側で埋める（OffsetDateTime→datetime-local整形）
-            r.setArticle(it.article());
-            r.setValid(it.valid());
-            form.getRows().add(r);
+            formItem.setArticle(it.getArticle());
+            formItem.setValid(it.isValid());
+            form.getRows().add(formItem);
         }
         model.addAttribute("form", form);
 

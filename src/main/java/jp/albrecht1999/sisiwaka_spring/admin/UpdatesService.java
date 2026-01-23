@@ -7,47 +7,48 @@ import jp.albrecht1999.sisiwaka_spring.repository.UpdatesRepository;
 import jp.albrecht1999.sisiwaka_spring.entity.UpdateEntity;
 
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
 public class UpdatesService {
 
-    private final UpdatesRepository repo;
-    private final ZoneId zone = ZoneId.of("Asia/Tokyo");
-    private final DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	private final UpdatesRepository repo;
+	private final ZoneId zone = ZoneId.of("Asia/Tokyo");
 
-    public UpdatesService(UpdatesRepository repo) {
-        this.repo = repo;
-    }
+	public UpdatesService(UpdatesRepository repo) {
+		this.repo = repo;
+	}
 
-    public List<UpdateRowDto> listAll() {
-        return repo.findAll();
-    }
+	public List<AdminUpdateViewDto> listForAdmin() {
+		return repo.findAll().stream()
+				.map(e -> new AdminUpdateViewDto(e.getId(), e.getCreatedAt(), e.getArticle(), e.isValid()))
+				.toList();
+	}
 
-    @Transactional
-    public int saveAll(UpdatesForm form) {
-        int n = 0;
+	@Transactional
+	public int saveAll(UpdatesForm form) {
+		int n = 0;
 
-        for (UpdateRowDto r : form.getRows()) {
-            String createdAtStr = r.getCreatedAt() == null ? "" : r.getCreatedAt().trim();
-            String article = r.getArticle() == null ? "" : r.getArticle();
+	// 	for (UpdateRowDto r : form.getRows()) {
+	// 		String createdAtStr = r.getCreatedAt() == null ? "" : r.getCreatedAt().trim();
+	// 		String article = r.getArticle() == null ? "" : r.getArticle();
 
-            // 追加ボタンで増やした“空行”対策
-            if (createdAtStr.isEmpty() && article.trim().isEmpty()) continue;
+	// 		// 追加ボタンで増やした“空行”対策
+	// 		if (createdAtStr.isEmpty() && article.trim().isEmpty())
+	// 			continue;
 
-            OffsetDateTime createdAt;
-            if (createdAtStr.isEmpty()) {
-                createdAt = OffsetDateTime.now(zone);
-            } else {
-                LocalDateTime ldt = LocalDateTime.parse(createdAtStr, f);
-                createdAt = ldt.atZone(zone).toOffsetDateTime();
-            }
+	// 		OffsetDateTime createdAt;
+	// 		if (createdAtStr.isEmpty()) {
+	// 			createdAt = OffsetDateTime.now(zone);
+	// 		} else {
+	// 			LocalDateTime ldt = LocalDateTime.parse(createdAtStr, f);
+	// 			createdAt = ldt.atZone(zone).toOffsetDateTime();
+	// 		}
 
-            repo.upsert(createdAt, article, r.isValid());
-            n++;
-        }
+	// 		repo.upsert(createdAt, article, r.isValid());
+	// 		n++;
+	// 	}
 
-        return n;
-    }
+		return n;
+	}
 }

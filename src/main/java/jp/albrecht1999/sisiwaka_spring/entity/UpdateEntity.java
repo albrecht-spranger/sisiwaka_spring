@@ -1,15 +1,15 @@
 package jp.albrecht1999.sisiwaka_spring.entity;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 public class UpdateEntity {
 
     private Long id;
-    private OffsetDateTime createdAt;
+    private LocalDate createdAt;
     private String article;
     private boolean valid;
 
-    public UpdateEntity(Long id, OffsetDateTime createdAt, String article, boolean valid) {
+    public UpdateEntity(Long id, LocalDate createdAt, String article, boolean valid) {
         this.id = id;
         this.createdAt = createdAt;
         this.article = article;
@@ -20,7 +20,7 @@ public class UpdateEntity {
         return id;
     }
 
-    public OffsetDateTime getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 

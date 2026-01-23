@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdatesForm {
-    private List<UpdateRowDto> rows = new ArrayList<>();
+    private List<AdminUpdateFormDto> rows = new ArrayList<>();
 
-    public List<UpdateRowDto> getRows() {
+    public List<AdminUpdateFormDto> getRows() {
         return rows;
     }
 
-    public void setRows(List<UpdateRowDto> rows) {
+    public void setRows(List<AdminUpdateFormDto> rows) {
         this.rows = rows;
     }
 }

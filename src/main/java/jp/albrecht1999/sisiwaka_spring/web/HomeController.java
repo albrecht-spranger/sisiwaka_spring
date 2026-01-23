@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("updatesList", homeService.latestUpdatesOrFallback());
+        model.addAttribute("updatesList", homeService.listForPublicTop5());
 
         // var list = homeService.latestUpdatesOrFallback();
         // System.out.println("updatesList size = " + (list == null ? "null" : list.size()));
