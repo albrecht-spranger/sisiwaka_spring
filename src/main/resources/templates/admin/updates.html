@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>シシワカ陶苑｜新着情報編集</title>
-	<link rel="stylesheet" href="../css/reset.css">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/edit_updates.css">
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/edit_updates.css}">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
 <body>
 	<header>
 		<a href="../index.php" class="header_left_block">
-			<img class="sisiwaka_touen_icon" src="../images/sisiwaka_touen_logo.jpg" alt="シシワカ陶苑ロゴ">
+			<img class="sisiwaka_touen_icon" th:src="@{/images/sisiwaka_touen_logo.jpg}" alt="シシワカ陶苑ロゴ">
 			<h1>
 				シシワカ陶苑
 			</h1>
@@ -26,12 +26,12 @@
 		<div class="header_right_block">
 			<div class="minne_icon">
 				<a href="https://minne.com/@sisiwaka10en" target="_blank">
-					<img src="../images/minne_logo_vertical.png" alt="minne logo">
+					<img th:src="@{/images/minne_logo_vertical.png}" alt="minne logo">
 				</a>
 			</div>
 			<div class="instagram_icon">
 				<a href="https://www.instagram.com/albrecht1999/" target="_blank">
-					<img src="../images/Instagram_Glyph_Gradient.png" alt="Instagram Icon">
+					<img th:src="@{/images/Instagram_Glyph_Gradient.png}" alt="Instagram Icon">
 				</a>
 			</div>
 		</div>
@@ -48,6 +48,7 @@
 
 		<form id="edit_updates_form" action="edit_process.php" method="post">
 			<div class="edit_updates_table">
+				<!-- ヘッダ -->
 				<div class="euf_row euf_header">
 					<div class="euf_cell euf_id">ID</div>
 					<div class="euf_cell euf_date">日付</div>
@@ -56,6 +57,7 @@
 					<div class="euf_cell euf_delete">削除</div>
 				</div>
 
+				<!-- 追加 -->
 				<div class="euf_row">
 					<div class="euf_cell euf_id">追加</div>
 					<div class="euf_cell euf_date">
@@ -68,36 +70,25 @@
 					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="1"></div>
 				</div>
 
-				<div class="euf_row">
-					<div class="euf_cell euf_id">1</div>
-					<div class="euf_cell euf_date">
-						<input type="date" id="update_date" name="update_date" value="2026-11-22">
-					</div>
-					<div class="euf_cell euf_article">
-						<textarea name="description" id="new_article_description">新規
-							記事記事記事記事
-							記事記事記事
-							記事記事記事
-						</textarea>
-					</div>
-					<div class="euf_cell euf_valid"><input type="checkbox" name="new_valid" value="1" checked></div>
-					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="0"></div>
-				</div>
+				<!-- 既存データ -->
+				<div class="euf_row" th:each="it : ${items}">
+					<div class="euf_cell euf_id" th:text="${it.id}">1</div>
 
-				<div class="euf_row">
-					<div class="euf_cell euf_id">2</div>
 					<div class="euf_cell euf_date">
-						<input type="date" id="update_date" name="update_date" value="2026-11-22">
+						<input type="date" th:value="${it.createdAt}">
 					</div>
+
 					<div class="euf_cell euf_article">
-						<textarea name="description" id="new_article_description">新規
-							記事記事記事記事
-							記事記事記事
-							記事記事記事
-						</textarea>
+						<textarea name="description" th:text="${it.article}">記事</textarea>
 					</div>
-					<div class="euf_cell euf_valid"><input type="checkbox" name="new_valid" value="1" checked></div>
-					<div class="euf_cell euf_delete"><input type="checkbox" name="new_delete" value="0"></div>
+
+					<div class="euf_cell euf_valid">
+						<input type="checkbox" name="valid" value="1" th:checked="${it.valid}">
+					</div>
+
+					<div class="euf_cell euf_delete">
+						<input type="checkbox" name="delete" value="0">
+					</div>
 				</div>
 			</div>
 			<!-- ボタン -->
